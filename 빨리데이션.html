@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+</head>
+
+<style>
+#nofocus {
+    width:50vw;
+    height:50vh;
+    background-color: skyblue;
+}
+</style>
+
+<body>
+    <!-- focus가 없는 놈에게 focus를 줌 -->
+    <div id="nofocus" tabindex="0"></div>
+
+    <script>
+        var v_focus = document.querySelector("#nofocus");
+        v_focus.addEventListener("keydown", function(){
+            alert(event.key);   // 무슨 키 눌렀쪄? 왜 눌렀쪄?
+        })
+    </script>
+
+    <h1>빨리데이션 유효성 체킁</h1>
+    <form action="">
+        한석희1  <input type="text" tabindex="1" id="" required><br>
+        뎅와뻔호 <input type="text" tabindex="3" id="" required><br>
+        한석희3  <input type="text" tabindex="2" id="" required><br>
+        한석희4  <input type="text" tabindex="4" id="" required><br>
+        <input type="submit" value="쩐송">
+    </form>
+
+
+
+
+</body>
+</html>
