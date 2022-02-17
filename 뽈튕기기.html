@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+<style>
+#id_ball {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-image: url("./images/lion.jpg");
+    background-size: 150px 150px;
+    border-radius: 50%;
+    /* transform: rotate(45deg); */
+    /* transform: skewX(45deg); 뒤틀리다, deskew */
+}
+#id_btn {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+}
+#id_btn2 {
+    position: absolute;
+    right: 50px;
+    top: 60px;
+}
+</style>
+</head>
+<body>
+    <input type="button" value="굴렁가" id="id_btn">
+    <input type="button" value="멈춰!" id="id_btn2">
+    <div id="id_ball"></div>
+
+<script>
+    var v_btn = document.querySelector("#id_btn");
+    var v_btn2 = document.querySelector("#id_btn2");
+    var v_ball = document.querySelector("#id_ball");
+    var v_viewWidth = window.innerWidth;
+    var v_viewHeight = window.innerHeight;
+
+    var v_mvWidth = 10;     // 수평 움직임
+    var v_mvHeight = 10;    // 수직 움직임
+    var v_gak = 0;          // 각도값
+    var v_timer = null;     // 타이머 is 리턴 받을 변수
+
+    var f_start = function() {
+        if (!v_ball.style.left) { // 디자이너 몰래 내맘대로 초기화
+            v_ball.style.left = "0px";
+            v_ball.style.top = "20px";
+        } 
+        
+
+        v_gak = (v_gak + 10) % 360;
+
+        v_ball.style.transform = "rotate(" + v_gak + "deg)";
+
+        v_ball.style.left = parseInt(v_ball.style.left) + v_mvWidth + "px";
+        var v_ballRight = parseInt(v_ball.style.left) + 150;
+        var v_ballLeft = parseInt(v_ball.style.left);
+
+        v_ball.style.top = parseInt(v_ball.style.top) + v_mvHeight + "px";
+        var v_ballBottom = parseInt(v_ball.style.top) + 150;
+        var v_ballTop = parseInt(v_ball.style.top);
+
+        // 좌우 충돌
+        if (v_ballLeft <= 0 || v_ballRight >= v_viewWidth) {
+            v_mvWidth = -v_mvWidth;
+            v_ball.style.transform = "skewX(45deg)";
+            f_zxc()
+        }
+
+        // 위 아래 충돌
+        if (v_ballTop <= 0 || v_ballBottom >= v_viewHeight) {
+            v_mvHeight = -v_mvHeight;
+            v_ball.style.transform = "skewY(45deg)";
+            f_zxc()
+        }
+
+        v_timer = setTimeout(f_start,50);  // 재귀호출
+    }
+
+    var f_stop = function() {
+        clearTimeout(v_timer);
+        v_isStart = false;
+    }
+
+    var v_isStart = false;
+    var f_prox = function() {
+        if (!v_isStart) {
+            f_start();
+            v_isStart = true;
+        }
+    }
+
+    var v_z = false;
+    var f_zxc = function() {
+        if (!v_z) {
+            v_gak = (v_gak - 10) % 360;
+            v_isStart = true;
+        } else {
+            v_gak = (v_gak + 10) % 360;
+            v_isStart = false;
+        }
+    }
+
+    v_btn.addEventListener("click", f_prox);
+    v_btn2.addEventListener("click", f_stop);
+    window.addEventListener("resize", function(){  // 사이즈가 변경되면
+        v_viewWidth = window.innerWidth;
+        v_viewHeight = window.innerHeight;
+    })
+    // http://192.168.144.27:8880/jsstudy/
+</script>    
+</body>
+</html>
