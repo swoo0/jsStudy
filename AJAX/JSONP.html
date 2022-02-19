@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+<script>
+    function jsonFlickrFeed(p_data) {
+        var v_items = p_data.items;
+        v_disp.innerHTML = "";  // 누적되지 않게 초기화
+        for (var i = 0; i < v_items.length; i++) {
+            var v_img = document.createElement("img");
+            v_img.src = v_items[i].media.m;
+            v_disp.appendChild(v_img);
+        }
+    }
+</script>
+</head>
+<body>
+    이미지 검색 <input type="text" id="id_sch" value="">
+    <button id="id_btn">찾깅</button>
+    <div id="id_disp" style="border:2px solid black"></div>
+<script>
+    var v_preURL= "https://www.flickr.com/services/feeds/photos_public.gne?tags=";
+    var v_postURL = "&format=json";
+    var v_txtBox = document.querySelector("#id_sch"); 
+    var v_btn = document.querySelector("#id_btn");
+    var v_disp = document.querySelector("#id_disp") 
+
+    var f_sch = function() {
+        var v_schWord = v_txtBox.value;
+        var v_fullURL = v_preURL + v_schWord + v_postURL;
+
+        var v_old = document.querySelector("#id_script");
+        if (v_old) {
+            document.head.removeChild(v_old);
+        }
+
+        https://quickchart.io/qr-code-api/
+        https://avatars.dicebear.com/
+        https://github.com/public-apis/public-apis#books
+        https://www.apistore.co.kr/main.do
+
+        var v_script = document.createElement("script");
+        v_script.src = v_fullURL;
+        v_script.setAttribute("id", "id_script"); // id값 추가.
+        document.head.appendChild(v_iscript);
+    }
+    v_btn.addEventListener("click", f_sch);
+
+</script>
+
+</body>
+</html>
+
