@@ -5,7 +5,14 @@ use strict (엄격모드)
 자동형변환 (알아서 지맘대로...)
 배열식접근법
 벨리데이션(validation유효성체킁)
-
+this -> call, apply, bind
+콜백함수 - 즉각실행함수 -> DRY원칙(Do not Repeat Yourself)
+tabindex = 0, 부호로 방향처리, cloneNode(true)깊은 복사와
+transform, transform-origin, rotate,skew,
+AJAX, 비동기, Origin, Cross Origin, CORS, Same-Origin-Policy, JSONP
+다양한 Open API
+빈객체를 네임스페이스로 활용
+var 전역/ 함수 Scope, let은 블락 Scope
 
 
 
@@ -17,3 +24,4 @@ use strict (엄격모드)
 hoistiong(선언문에만 유효하고 표현식에는 유효하지 않음)
 전역변수 설정의 다른 방법(우리가 선언하는 모든 전역변수,함수는 window객체의 속성이 됨.)
 스크립트에서는 context에 따라 this가 가리키는 값이 바뀜
+
