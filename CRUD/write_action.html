@@ -18,6 +18,9 @@
             var v_name = v_params[i].split("=")[0];
             var v_value = v_params[i].split("=")[1];
             if (v_name == p_name) {
+                if (v_value.indexOf("+") > -1) {
+                    v_value = v_value.replace("+", " ");
+                }
                 return decodeURIComponent(v_value);
             }
         }
@@ -27,8 +30,6 @@
     alert(request.getParameter("n_title"));
     alert(request.getParameter("n_writer"));
     alert(request.getParameter("n_content"));
-
-
 
     // for (var i = 0; i <  v_params.length; i++) {
     //     var v_name = v_params
