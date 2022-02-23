@@ -13,6 +13,15 @@ AJAX, 비동기, Origin, Cross Origin, CORS, Same-Origin-Policy, JSONP
 다양한 Open API
 빈객체를 네임스페이스로 활용
 var 전역/ 함수 Scope, let은 블락 Scope
+무한스크롤, 이미지끌어다놓기(파일잘 가지고 있으면 끝) -> event.preventDefault(),stopProp...,
+
+
+
+
+
+
+
+
 
 
 
