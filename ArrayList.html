@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    
+<script>
+    var v_obj = {
+        a : "흥",
+        b : "치",
+        c : "피"
+    }
+    console.log(v_obj);
+    delete v_obj.b;  // 객체속성 삭제 명령 delete
+    console.log(v_obj);
+    console.log("--------------------------");
+
+    // add, remove, set, get ... ArrayList 맹글기 with 정은 초코파이
+    var ArrayList = function() {
+        this.length = 0;  // 속성은 여기에 기술
+        return this;
+    }
+    ArrayList.prototype.add = function(p_arg) {
+        this[this.length] = p_arg;
+        this.length++;
+        return this;
+    }
+    ArrayList.prototype.set = function(p_index, p_val) {
+        this[p_index] = p_val  // 그냥 덮어쓰깅
+        return this;  // just for 메소드 체이닝
+    }
+    ArrayList.prototype.get = function(p_index) {
+        return this[p_index];
+    }
+    ArrayList.prototype.remove = function(p_index) {
+        // 여기 빨리 구현해봄
+        // 제한사항 인덱스 1번을 지우면 2번이 1번으로 땡겨져야 함
+        for (var i = p_index; i < this.length-1; i++) {
+            this[i] = this[i + 1];
+        }
+        delete this[p_index];
+        this.length--;
+        // return this;
+    }
+    ArrayList.prototype.indexOf = function(p_val) {
+        // 리스트 안에서 해당 값을 찾으면 해당 index를 return하고
+        // 끝내 못 찾으면 -1을 return함
+
+        for (var i = 0; i < this.length-1; i++) {
+            if (this.get(i) == p_val) {
+                return i;
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    var woo = new ArrayList();  // 객체 생성
+    woo.add("이");
+    woo.add("한");
+    woo.add("범");
+
+    // console.log(woo);
+    // console.log(woo.get(1));
+    // woo.set(1, "이한범 바쳐서");
+    // console.log(woo);
+    
+    // woo.remove(1);
+    // console.log(woo);
+
+    woo.indexOf("한")
+</script>
+
+</body>
+</html>

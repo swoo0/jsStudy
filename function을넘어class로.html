@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    // 자바스크립트에서 function 키워드는 함수의 의미로도 쓰이지만 class(생성자)의 의미로도 쓰인다
+    var MyArray = function() {
+        this.length = 0;  // length 속성 부여, 초기값 0
+
+        return this;  // 명시적으로 객체를 리턴함을 표시(생략가능)
+    }
+    MyArray.prototype.push = function(p_arg) { // 메소드 prototype에 선언해야 메모리가 절약됨
+        this[this.length] = p_arg;
+        this.length++;
+        
+        return this;  // 오직 메소드 체이닝을 위한 기술
+    }    
+    MyArray.prototype.sort = function(p_arg) {
+        if (!p_arg) {  // 매개변수 p_arg에 값이 넘어오지 않았을 때
+            for (var i = 0; i < this.length; i++) {  // 버블정렬
+                for (var j = i + 1; j < this.length; j++) {
+                    if (this[i] < this[j]) {
+                        var v_temp = this[i];  // 두 변수 값 교환
+                        this[i] = this[j];
+                        this[j] = v_temp
+                    }
+                }
+            }
+            return this;
+        }
+        for (var i = 0; i < this.length; i++) {  // 버블정렬
+            for (var j = i + 1; j < this.length; j++) {
+                // callback 함수가 매개변수 2개를 필요로 하므로, 값 2개 넘김
+                if (p_arg(this[i], this[j]) > 0) {
+                    var v_temp = this[i];  // 두 변수 값 교환
+                    this[i] = this[j];
+                    this[j] = v_temp
+                }
+            }
+        }
+        return this;  // Method Chaining 쓰면 꽤 있어보여용
+    }
+    
+    var v_bomyung = new MyArray();  // 객체 생성(Instance vs Object) 인간 vs 객체
+    // sort 테스트용 데이또
+    for (var i = 1; i < 10; i++) {
+        v_bomyung.push(Math.ceil(Math.random() * 100));  // 1~100 사이 정수
+    }
+    
+    console.log(v_bomyung.sort(function(a, b){
+        return a-b;
+    }));
+    console.log(v_bomyung.sort(function(a, b){
+        return b-a;
+    }));
+    
+    
+
+
+
+
+
+
+
+/*  
+    배열은 callback함수를 매개변수로 받아서 내림차순/오름차순을 정하기도 함
+    v_bomyung.sort(function(a, b) {
+        return a - b;
+    })
+*/
+/*     
+   var v_relt = v_bomyung.push(272).push(337).sort().push(888).sort();  // 이렇게 쓰고 싶엉
+   console.log(v_relt)  // 출력 결과 확인
+
+    console.log(v_bomyung);
+    v_bomyung.sort();  // 메서드 안에 return 값이 없으므로 당근빠다 undifined
+    console.log(v_bomyung);
+*/
+</script>
+</body>
+</html>
