@@ -48,11 +48,11 @@
         // 끝내 못 찾으면 -1을 return함
 
         for (var i = 0; i < this.length-1; i++) {
-            if (this.get(i) == p_val) {
+            if (this[i] == p_val) {
                 return i;
-            } else {
-                return -1;
             }
+            
+            return -1;
         }
     }
 
